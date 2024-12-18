@@ -19,11 +19,11 @@ public class BackGroundScroll : MonoBehaviour, IBackGrondScroller
 {
     //컨트롤 .를 눌러 빠른 작업 리펙토링
     [SerializeField] private float scrollSpeed = 0f;
-    private Vector3 startPos = new Vector3(0f, 12.75f, 0f);
+    private Vector3 startPos = new Vector3(0f, 12.5f, 0f);
     //스크롤이 완료가 되어서 화면밖으로 이동했을 때,
     //초기 위치로 돌아가기 위한 좌표
 
-    private float resetPositonY = -12.75f;
+    private float resetPositonY = -12.5f;
     //화면을 벗어났다고 판정하기 위한 기준 높이
     
     public void ResetPositon()

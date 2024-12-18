@@ -12,7 +12,7 @@ public class ScrollManager : MonoBehaviour
     {
         scrollObjects = InterFaceFinder.FindObjectOfInterface<IBackGrondScroller>();
 
-        SetScrollSpeed(2.5f);// 추후 게임매니저에서 관리하도록 변경
+       // SetScrollSpeed(2.5f);// 추후 게임매니저에서 관리하도록 변경
     }
 
     // Update is called once per frame

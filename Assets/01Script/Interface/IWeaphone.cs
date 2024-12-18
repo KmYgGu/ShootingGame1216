@@ -2,17 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IWeaphone : MonoBehaviour
+public interface IWeaphone  
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    void SetOwner(GameObject newOwner);//무기의 소유자가 누구인지
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    void Fire();
+
+    void SetEnable(bool enable);
 }

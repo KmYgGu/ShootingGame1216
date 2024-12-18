@@ -6,15 +6,30 @@ using UnityEngine;
 //이동, 피격, 아이템 습득
 public class PlayerController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private IMovement movement;//C# 참조형 변수 (포인터)
+
+    private void Awake()
     {
-        
+        if (TryGetComponent<IMovement>(out movement))
+            Debug.Log("PlayerController.cs - Awake() - movement의 참조를 실패했다.");
     }
 
-    // Update is called once per frame
-    void Update()
+    public void CustomUpdate(Vector2 moveDir)
     {
-        
+        //if(movement != null)
+        //    movement.Move(moveDir);// nullptr
+
+        movement?.Move(moveDir);//nullptr가 아닐 경우에만 실행
+
     }
+    public void StartGame()
+    {
+        movement?.SetEnable(true);
+    }
+
+    public void StopGame()
+    {
+        movement?.SetEnable(false);
+    }
+
 }
