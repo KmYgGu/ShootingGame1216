@@ -10,6 +10,8 @@ public class PlayerWeapon : MonoBehaviour, IWeaphone
 {
     [SerializeField]    private GameObject projectilePrefab; //나중에 오브젝트 풀링 구현하면서, 수정할 예정
     [SerializeField]    private Transform firePoint;
+
+    
     private int numOfProjectTiles = 5; //투사체 발사되는 갯수
     private float spreadAngle = 5f;//투사체 발사 각도 간격
     private float fireRate = 0.3f;//투사체 발사 사이 간격
@@ -42,13 +44,16 @@ public class PlayerWeapon : MonoBehaviour, IWeaphone
                 fireDir = fireRotation * Vector2.up;
 
                 //오브젝트 풀링 구현하고.
+                ProjectTileManager.instance.FireProjectile(ProjecttileType.Player01, firePoint.position,
+                    fireDir, gameObject, 1, 10.0f);
+
             }
         }
     }
 
     public void SetEnable(bool enable)
     {
-
+        isFireing = enable;
     }
 
     public void SetOwner(GameObject newOwner)
