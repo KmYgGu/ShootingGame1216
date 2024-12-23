@@ -15,6 +15,7 @@ public class GameManager : SingleTon<GameManager>
     private PlayerController pc;
     private ScrollManager scrollManager;
     private IinputHandle inputHandle;
+    private EnemySpwonManager enemySpawnManager;
     
 
     private void Start()
@@ -31,6 +32,7 @@ public class GameManager : SingleTon<GameManager>
         pc = FindAnyObjectByType<PlayerController>();
         scrollManager = FindAnyObjectByType<ScrollManager>();
         inputHandle = GetComponent<KeyBordInputHandle>();
+        enemySpawnManager = FindAnyObjectByType<EnemySpwonManager>();
     }
 
     private void Update()
@@ -45,13 +47,11 @@ public class GameManager : SingleTon<GameManager>
     IEnumerator GameStart()
     {
         yield return null;
-        Debug.Log("데이터 초기화");
-        Debug.Log("배경음악 출력");
         yield return new WaitForSeconds(1f);
         pc?.StartGame();
         scrollManager?.SetScrollSpeed(2.5f);
 
-
-        Debug.Log("몬스터 등장 시작");
+        yield return new WaitForSeconds(1f);
+        enemySpawnManager.InitSpawnManager();
     }
 }
