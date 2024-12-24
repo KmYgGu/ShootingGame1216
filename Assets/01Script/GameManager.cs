@@ -16,6 +16,7 @@ public class GameManager : SingleTon<GameManager>
     private ScrollManager scrollManager;
     private IinputHandle inputHandle;
     private EnemySpwonManager enemySpawnManager;
+    private MetaoSpwonManager meteoManager;
     
 
     private void Start()
@@ -33,6 +34,7 @@ public class GameManager : SingleTon<GameManager>
         scrollManager = FindAnyObjectByType<ScrollManager>();
         inputHandle = GetComponent<KeyBordInputHandle>();
         enemySpawnManager = FindAnyObjectByType<EnemySpwonManager>();
+        meteoManager = FindAnyObjectByType<MetaoSpwonManager>();
     }
 
     private void Update()
@@ -53,5 +55,8 @@ public class GameManager : SingleTon<GameManager>
 
         yield return new WaitForSeconds(1f);
         enemySpawnManager.InitSpawnManager();
+
+        yield return new WaitForSeconds(3f);
+        meteoManager.StartSpawnMeteo();
     }
 }
