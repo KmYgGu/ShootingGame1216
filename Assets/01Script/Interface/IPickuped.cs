@@ -4,8 +4,8 @@ using UnityEngine;
 
 public interface IPickuped  
 {
-     void OnPickUp(GameObject obj)
-    {
+    void OnPickUp(GameObject obj);
+    
 
-    }
+    
 }
