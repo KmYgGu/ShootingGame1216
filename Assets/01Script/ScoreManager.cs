@@ -1,9 +1,21 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
+    //C#에서 제공하는 문법 
+    public delegate void ScoreChange(int score);
+    public static event ScoreChange OnChangeScore;
+    public static event ScoreChange OnChangeZemCount;
+    public static event ScoreChange OnChangeHp;
+    public static event ScoreChange OnChangeBomb;
+    public static event ScoreChange OnChangePower;
+
+    // 유니티 Action 
+    public event Action OnDiedPlayer;
+
 
     private int score;
     private int curHp;
@@ -24,17 +36,23 @@ public class ScoreManager : MonoBehaviour
         set
         {
             score = value;
+            OnChangeScore?.Invoke(score);
         }
     }
     public void InitScoreReset()
     {
         SetScore = 0;
-
         curHp = maxHp = 5;
+        OnChangeHp?.Invoke(curHp);
 
-        powerLevel = 0;
+        powerLevel = 1;
+        OnChangePower?.Invoke(powerLevel);
+
         zemCount = 0;
+        OnChangeZemCount?.Invoke(zemCount);
+
         bombCount = 3;
+        OnChangeBomb?.Invoke(bombCount);
     }
 
 
@@ -68,6 +86,8 @@ public class ScoreManager : MonoBehaviour
         {
             DecreaseHp();
         }
+
+        OnChangeHp?.Invoke(CurHp);
     }
 
     private void IncreaseHP()
@@ -87,6 +107,7 @@ public class ScoreManager : MonoBehaviour
         {
             curHp = 0;
             //사망처리
+            OnDiedPlayer?.Invoke();
         }
     }
 
@@ -101,11 +122,13 @@ public class ScoreManager : MonoBehaviour
             bombCount--;
             //ui 갱신
         }
+        OnChangeBomb?.Invoke(bombCount);
     }
 
     public void PowerUp()
     {
         powerLevel++;
         //플레이어 강화
+        OnChangePower?.Invoke(powerLevel);
     }
 }

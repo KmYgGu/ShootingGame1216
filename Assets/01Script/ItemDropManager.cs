@@ -30,7 +30,7 @@ public class ItemDropManager : MonoBehaviour
 
         dropRate = Random.Range(0, 1000);
 
-        if (dropRate < 10) 
+        if (dropRate < 500) 
             obj = Instantiate(flyItems[0], enemyInfo.transform.position, Quaternion.identity);
         else if (dropRate < 20)
             obj = Instantiate(flyItems[1], enemyInfo.transform.position, Quaternion.identity);
