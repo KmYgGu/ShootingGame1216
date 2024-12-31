@@ -62,18 +62,29 @@ public class ScoreManager : MonoBehaviour
         //델리게이트의 구독
         Enemy.OnMonsterDied += HandleMonsterDied;
         //HandleMonsterDied 메소드를 통해 구독신청을 함
+        Dropitem_Zem.OnPickupJam += HandldZempickup;
+        PlayerHitBox.OnPlayerHPIncrease += PlayerHPChange;
     }
 
     private void OnDisable()
     {
         Enemy.OnMonsterDied -= HandleMonsterDied;
         //해제를 해주지 않게 되는 경우, 가비지 컬렉터 생성
+        Dropitem_Zem.OnPickupJam -= HandldZempickup;
+        PlayerHitBox.OnPlayerHPIncrease -= PlayerHPChange;
     }
 
     //델리게이트의 콜백 메소드
     private void HandleMonsterDied(Enemy enemyInfo)
     {
         Debug.Log($"{enemyInfo.gameObject.name}몬스터가 사망");
+    }
+
+    private void HandldZempickup()
+    {
+        zemCount++;
+        OnChangeZemCount?.Invoke(zemCount++);
+        SetScore = Score + 7;
     }
 
     public void PlayerHPChange(bool isincreased)

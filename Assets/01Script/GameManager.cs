@@ -17,6 +17,7 @@ public class GameManager : SingleTon<GameManager>
     private IinputHandle inputHandle;
     private EnemySpwonManager enemySpawnManager;
     private MetaoSpwonManager meteoManager;
+    private ScoreManager scoreManager;
     
 
     private void Start()
@@ -35,6 +36,7 @@ public class GameManager : SingleTon<GameManager>
         inputHandle = GetComponent<KeyBordInputHandle>();
         enemySpawnManager = FindAnyObjectByType<EnemySpwonManager>();
         meteoManager = FindAnyObjectByType<MetaoSpwonManager>();
+        scoreManager = FindAnyObjectByType<ScoreManager>();
     }
 
     private void Update()
@@ -49,6 +51,7 @@ public class GameManager : SingleTon<GameManager>
     IEnumerator GameStart()
     {
         yield return null;
+        scoreManager?.InitScoreReset();
         yield return new WaitForSeconds(1f);
         pc?.StartGame();
         scrollManager?.SetScrollSpeed(2.5f);

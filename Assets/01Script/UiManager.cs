@@ -87,6 +87,21 @@ public class UiManager : MonoBehaviour
         canvasTransform = obj.GetComponent<Transform>();
     }
 
+    private void OnEnable()
+    {
+        ScoreManager.OnChangeScore += UpdateScoreText;
+        ScoreManager.OnChangeBomb += UpdateBombText;
+        ScoreManager.OnChangeHp += UpdatePlayerHP;
+        ScoreManager.OnChangeZemCount += UpdateZemText;
+    }
+    private void OnDisable()
+    {
+        ScoreManager.OnChangeScore -= UpdateScoreText;
+        ScoreManager.OnChangeBomb -= UpdateBombText;
+        ScoreManager.OnChangeHp -= UpdatePlayerHP;
+        ScoreManager.OnChangeZemCount -= UpdateZemText;
+    }
+
     private void UpdatePlayerHP(int score)
     {
         for(int i = 0; i < 5; i++)
