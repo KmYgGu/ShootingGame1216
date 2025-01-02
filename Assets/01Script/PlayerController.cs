@@ -24,8 +24,12 @@ public class PlayerController : MonoBehaviour
         //    movement.Move(moveDir);// nullptr
 
         movement?.Move(moveDir);//nullptr가 아닐 경우에만 실행
-
         weapon?.Fire();
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            weapon?.LunchBomb();
+        }
 
     }
     public void StartGame()

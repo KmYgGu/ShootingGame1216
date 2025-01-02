@@ -18,6 +18,8 @@ public class GameManager : SingleTon<GameManager>
     private EnemySpwonManager enemySpawnManager;
     private MetaoSpwonManager meteoManager;
     private ScoreManager scoreManager;
+
+    public ScoreManager GetScoreManager => scoreManager;
     
 
     private void Start()

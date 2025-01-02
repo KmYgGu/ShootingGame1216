@@ -44,5 +44,25 @@ public class PlayerBomb : MonoBehaviour
         }
 
         anims.SetTrigger("Onfire");
+        yield return new WaitForSeconds(1.9f);
+        OnFire();
+        yield return null;
+        Destroy(gameObject);
+    }
+
+    void OnFire()
+    {
+        GameObject[] enemys = GameObject.FindGameObjectsWithTag("Enemy");
+
+        for(int i =0; i < enemys.Length; i++)
+        {
+            if(enemys[i].TryGetComponent<IDamaged>(out IDamaged damaged))
+            {
+                damaged.TakeDamage(null, 100);//todo : owner null 추후 수정
+            }
+        }
+        //장점 : 코드가 간결하다
+        //단점 : 성능이 구리다
+        //foreach(GameObject go in enemys)
     }
 }

@@ -8,5 +8,7 @@ public interface IWeaphone
 
     void Fire();
 
+    void LunchBomb();
+
     void SetEnable(bool enable);
 }

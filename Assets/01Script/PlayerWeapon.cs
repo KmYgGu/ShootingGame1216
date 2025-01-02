@@ -10,6 +10,7 @@ public class PlayerWeapon : MonoBehaviour, IWeaphone
 {
     [SerializeField]    private GameObject projectilePrefab; //나중에 오브젝트 풀링 구현하면서, 수정할 예정
     [SerializeField]    private Transform firePoint;
+    [SerializeField]    private GameObject luncherBoombPrefab;
 
     
     private int numOfProjectTiles = 5; //투사체 발사되는 갯수
@@ -48,6 +49,16 @@ public class PlayerWeapon : MonoBehaviour, IWeaphone
                     fireDir, gameObject, 1, 10.0f);
 
             }
+        }
+    }
+
+    public void LunchBomb()
+    {
+        if(GameManager.Instance.GetScoreManager.BombCount > 0)
+        {
+            GameManager.Instance.GetScoreManager.ChangeBombCount(false);
+
+            obj = Instantiate(luncherBoombPrefab, transform.position, Quaternion.identity);
         }
     }
 
