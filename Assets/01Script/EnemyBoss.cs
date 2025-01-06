@@ -30,7 +30,6 @@ public class EnemyBoss : MonoBehaviour, IMovement, IDamaged
     private IWeaphone curWeaphon; // 현 활성무기
 
     private Vector2 moveDir = Vector2.zero;
-
     private bool IsInit = false;
     private float moveSpeed = 3f;
     private string bossName;
@@ -54,6 +53,7 @@ public class EnemyBoss : MonoBehaviour, IMovement, IDamaged
         SetEnable(true);
 
         //AI 동작 시키기
+        ChangeState(BossState.BS_MoveToAppear);
     }
 
     // 전처리기 하나의 종류 region, define, include
