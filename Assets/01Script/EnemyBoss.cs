@@ -92,7 +92,7 @@ public class EnemyBoss : MonoBehaviour, IMovement, IDamaged
         while (true)
         {
             curWeaphon.Fire();
-            yield return new WaitForSeconds(0.7f);
+            yield return new WaitForSeconds(0.4f);
         }
     }
 
@@ -112,7 +112,7 @@ public class EnemyBoss : MonoBehaviour, IMovement, IDamaged
             {
                 moveDir *= -1f;
             }
-            yield return new WaitForSeconds(0.4f);
+            yield return new WaitForSeconds(0.1f);
         }
     }
     #endregion 

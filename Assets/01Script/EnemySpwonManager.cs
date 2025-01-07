@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class EnemySpwonManager : MonoBehaviour
 {
-    [SerializeField]private Transform[] spawnTrans;
+    [SerializeField] private ShootingGame gameDatas;
+    private Dictionary<int, MonsterTable_Entity> monsterDatas = new Dictionary<int, MonsterTable_Entity>();
+
+    [SerializeField] private Transform[] spawnTrans;
     [SerializeField] private GameObject[] spawnEnemyPrefabs;
     [SerializeField] private GameObject[] spawnBossPrefabs;
 
@@ -19,7 +22,20 @@ public class EnemySpwonManager : MonoBehaviour
     public delegate void SpawnFinish();
     public static event SpawnFinish OnSpawnFinsh;
 
-
+    private void Awake()
+    {
+        for (int i = 0; i < gameDatas.MonsterTable.Count; i++)//몬스터 테이블에 있는 값만큼 반복
+        {
+            monsterDatas.Add(gameDatas.MonsterTable[i].MonsterID,//key값은 monsterID
+                gameDatas.MonsterTable[i]);               
+        }
+        //if (monsterDatas.TryGetValue(10031, out MonsterTable_Entity data))
+        //{
+        //    Debug.Log("테이블 읽기 성공 " + data.MonsterName);
+        //}
+        //else
+        //    Debug.Log("테이블 읽기 실패");
+    }
 
     public void InitSpawnManager()
     {
@@ -47,7 +63,23 @@ public class EnemySpwonManager : MonoBehaviour
                     Quaternion.identity);                           // 스폰 각도
 
                 if(obj.TryGetComponent<Enemy>(out Enemy enemy))
+                {
+                    int tableID = 10000 + 10 * (spawnLevel/3 +1)
+                        + 1 * (spawnLevel %3 + 1);
+                    //0 10011
+                    //1 10012
+                    //2 10013
+                    //3 10021
+
+                    if(monsterDatas.TryGetValue(tableID, out MonsterTable_Entity data))
+                    {
+                        enemy.InitMonsterData(data);
+                        Debug.Log("몬스터 생성 HP : " + data.MonsterHP);
+                    } 
                     enemy.SetEnable(true);
+                    
+                }
+                    
             }
 
             spawnCount++;
@@ -69,7 +101,7 @@ public class EnemySpwonManager : MonoBehaviour
         if(obj.TryGetComponent<EnemyBoss>(out  bossAI))
         {
             IWeaphone[] weapons = new IWeaphone[]
-            {new EnemyBossWepon3(), new EnemyBossWepon2(), new EnemyBossWepon1()};
+            {new EnemyBossWepon1(), new EnemyBossWepon3(), new EnemyBossWepon2()};
 
             for (int i = 0;i < weapons.Length;i++)
             {

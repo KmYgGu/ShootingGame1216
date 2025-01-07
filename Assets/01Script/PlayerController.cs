@@ -11,11 +11,13 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        if (TryGetComponent<IMovement>(out movement))
-            Debug.Log("PlayerController.cs - Awake() - movement의 참조를 실패했다.");
+        TryGetComponent<IMovement>(out movement);
+        //if (TryGetComponent<IMovement>(out movement))
+        //Debug.Log("PlayerController.cs - Awake() - movement의 참조를 실패했다.");
 
-        if (TryGetComponent<IWeaphone>(out weapon))
-            Debug.Log("PlayerController.cs - Awake() - weapon 참조를 실패했다.");
+        TryGetComponent<IWeaphone>(out weapon);
+        //if (TryGetComponent<IWeaphone>(out weapon))
+        //Debug.Log("PlayerController.cs - Awake() - weapon 참조를 실패했다.");
     }
 
     public void CustomUpdate(Vector2 moveDir)

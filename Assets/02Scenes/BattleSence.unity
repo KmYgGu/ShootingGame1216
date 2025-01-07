@@ -3594,6 +3594,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9721362db3ace4e46a5c2316537b59ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameDatas: {fileID: 11400000, guid: 5b97a1effea1a7344b21882714ad0d80, type: 2}
   spawnTrans:
   - {fileID: 2118662234}
   - {fileID: 351397263}

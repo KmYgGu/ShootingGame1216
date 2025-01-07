@@ -1,0 +1,99 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 8
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c9615868194dd246941a2eeb9b98c67, type: 3}
+  m_Name: ShootingGame
+  m_EditorClassIdentifier: 
+  MonsterTable:
+  - MonsterID: 10011
+    MonsterName: "\uC694\uC6A9"
+    MonsterHP: 10
+    MonsterScore: 0
+    MonsterProjectTile: -1
+    Pattern01: 
+    Pattern02: 
+  - MonsterID: 10021
+    MonsterName: "\uC624\uC694\uC6A9"
+    MonsterHP: 40
+    MonsterScore: 0
+    MonsterProjectTile: -1
+    Pattern01: 
+    Pattern02: 
+  - MonsterID: 10031
+    MonsterName: "\uC544\uC721\uC6A9"
+    MonsterHP: 90
+    MonsterScore: 0
+    MonsterProjectTile: -1
+    Pattern01: 
+    Pattern02: 
+  - MonsterID: 10012
+    MonsterName: "\uC544\uC774"
+    MonsterHP: 15
+    MonsterScore: 0
+    MonsterProjectTile: -1
+    Pattern01: 
+    Pattern02: 
+  - MonsterID: 10022
+    MonsterName: "\uC624\uC774"
+    MonsterHP: 45
+    MonsterScore: 0
+    MonsterProjectTile: -1
+    Pattern01: 
+    Pattern02: 
+  - MonsterID: 10032
+    MonsterName: "\uC6B0\uC720"
+    MonsterHP: 95
+    MonsterScore: 0
+    MonsterProjectTile: -1
+    Pattern01: 
+    Pattern02: 
+  - MonsterID: 10013
+    MonsterName: "\uD06C\uD06D"
+    MonsterHP: 20
+    MonsterScore: 0
+    MonsterProjectTile: -1
+    Pattern01: 
+    Pattern02: 
+  - MonsterID: 10023
+    MonsterName: "\uD788\uD788"
+    MonsterHP: 50
+    MonsterScore: 0
+    MonsterProjectTile: -1
+    Pattern01: 
+    Pattern02: 
+  - MonsterID: 10033
+    MonsterName: "\uBAC4\uBAC4"
+    MonsterHP: 100
+    MonsterScore: 0
+    MonsterProjectTile: -1
+    Pattern01: 
+    Pattern02: 
+  - MonsterID: 20001
+    MonsterName: "\uD0B9"
+    MonsterHP: 5000
+    MonsterScore: 0
+    MonsterProjectTile: 3
+    Pattern01: 
+    Pattern02: 
+  - MonsterID: 20002
+    MonsterName: "\uC5E0\uD398\uB7EC"
+    MonsterHP: 7500
+    MonsterScore: 0
+    MonsterProjectTile: 4
+    Pattern01: 
+    Pattern02: 
+  - MonsterID: 20003
+    MonsterName: "\uC655"
+    MonsterHP: 10000
+    MonsterScore: 0
+    MonsterProjectTile: 5
+    Pattern01: 
+    Pattern02: 

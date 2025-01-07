@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour, IMovement, IDamaged
     private Vector2 moveDir;
     private float moveSpeed = 3;
     private bool isInit;
+
     private int curHp = 10;
     private int maxHp = 10;
 
@@ -53,6 +54,11 @@ public class Enemy : MonoBehaviour, IMovement, IDamaged
         }
     }
 
+    public void InitMonsterData(MonsterTable_Entity data)
+    {
+        maxHp = data.MonsterHP;
+    }
+
     public void Move(Vector2 newDirection)
     {
         transform.Translate(newDirection * (moveSpeed * Time.deltaTime));
@@ -83,12 +89,12 @@ public class Enemy : MonoBehaviour, IMovement, IDamaged
 
     private void OnDamaged()
     {
-        Debug.Log("몬스터 피격");
+        //Debug.Log("몬스터 피격");
     }
 
     private void OnDie()
     {
-        Debug.Log("몬스터 사망");
+        //Debug.Log("몬스터 사망");
         OnMonsterDied?.Invoke(this);//구독자가 한명이라도 있으면 델리게이트를 발동
 
         Destroy(gameObject);
