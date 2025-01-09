@@ -229,6 +229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad7ed08158688d748bc3a89ee18bd32e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loadingBar: {fileID: 1853041986}
 --- !u!4 &283424446
 Transform:
   m_ObjectHideFlags: 0
