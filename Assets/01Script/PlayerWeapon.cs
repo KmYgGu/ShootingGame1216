@@ -32,6 +32,8 @@ public class PlayerWeapon : MonoBehaviour, IWeaphone
 
         if(isFireing)
         {
+            SoundManager.instance.PlaySFX(SFX_TYPE.SFX_Fire);
+
             nextFireTime = Time.time + fireRate;
 
             startAngle = -spreadAngle * (numOfProjectTiles -1)/2;

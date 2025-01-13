@@ -97,6 +97,8 @@ public class Enemy : MonoBehaviour, IMovement, IDamaged
         //Debug.Log("몬스터 사망");
         OnMonsterDied?.Invoke(this);//구독자가 한명이라도 있으면 델리게이트를 발동
 
+        SoundManager.instance.PlaySFX(SFX_TYPE.SFX_Explosion);
+
         Destroy(gameObject);
     }
 
