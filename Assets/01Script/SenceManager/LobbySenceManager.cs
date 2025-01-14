@@ -26,6 +26,8 @@ public class LobbySenceManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI bgm_Text;
     [SerializeField] private Slider bgm_Slider;
 
+    [SerializeField] private List<IncentBtn> enchantBTNs;
+
     private float valueF;
 
     public void SFX_ValueChange(float value)
@@ -62,6 +64,20 @@ public class LobbySenceManager : MonoBehaviour
 
         SFX_ValueChange(PlayerPrefs.GetFloat(SAVE_Type.SAVE_SFX.ToString()));
         BGMValueChange(PlayerPrefs.GetFloat(SAVE_Type.SAVE_BGM.ToString()));
+
+        // 제련소 스킬 버튼 정보 갱신
+        for(int i = 0; i < 5;  i++)
+        {
+            SkillType type = (SkillType)i;
+            if(0 < PlayerPrefs.GetInt(type.ToString()))
+            {
+                enchantBTNs[i].InitBtn(true, 99);
+            }
+            else
+            {
+                enchantBTNs[i].InitBtn(false, 99);
+            }
+        }
     }
 
     //게임 시작 버튼

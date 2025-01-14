@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
     }
     public void StartGame()
     {
+        
         movement?.SetEnable(true);
         weapon?.SetEnable(true);
     }

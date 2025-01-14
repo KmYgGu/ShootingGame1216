@@ -25,6 +25,12 @@ public class PlayerWeapon : MonoBehaviour, IWeaphone
     private Vector2 fireDir;
     private GameObject obj;
 
+    public void InitWeapon(GameObject projectileType, float rate)
+    {
+        projectilePrefab = projectileType;
+        fireRate = rate;
+    }
+
     public void Fire()
     {
         if (Time.time < nextFireTime)//한 프레임이라도 증가했으면 바로 작동

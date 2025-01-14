@@ -93,8 +93,23 @@ public class IntroSenceManager : MonoBehaviour
         PlayerPrefs.SetString(SAVE_Type.SAVE_NickName.ToString(), userNickName);
         PlayerPrefs.SetInt(SAVE_Type.SAVE_Level.ToString(), 1);
         PlayerPrefs.SetInt(SAVE_Type.SAVE_EXP.ToString(), 0);
+
+        PlayerPrefs.SetInt(SAVE_Type.SAVE_GOLD.ToString(), 20000);
+
         PlayerPrefs.SetFloat(SAVE_Type.SAVE_SFX.ToString(), 1.0f);
         PlayerPrefs.SetFloat(SAVE_Type.SAVE_BGM.ToString(), 1.0f);
-        
+
+        PlayerPrefs.SetInt(SkillType.ST_PowerUp.ToString(),         0);
+        PlayerPrefs.SetInt(SkillType.ST_DoubleShoot.ToString(),     0);
+        PlayerPrefs.SetInt(SkillType.ST_BoomCountAdd.ToString(),    0);
+        PlayerPrefs.SetInt(SkillType.ST_PowerUp2.ToString(),        0);
+        PlayerPrefs.SetInt(SkillType.ST_TripleShoot.ToString(),     0);
+
+    }
+
+    public void DeleteUserInfo()
+    {
+        PlayerPrefs.DeleteKey(SAVE_Type.SAVE_NickName.ToString());
+        InitIntroScene();
     }
 }
