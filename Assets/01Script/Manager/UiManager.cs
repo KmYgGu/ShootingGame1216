@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class UiManager : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class UiManager : MonoBehaviour
     private TextMeshProUGUI zemText;
     private TextMeshProUGUI bombText;
     [SerializeField] private Image[] heartImg;
+
+    [SerializeField] private GameObject popupObj;
 
     private GameObject obj;
     private Transform tr;
@@ -93,6 +96,7 @@ public class UiManager : MonoBehaviour
         ScoreManager.OnChangeBomb += UpdateBombText;
         ScoreManager.OnChangeHp += UpdatePlayerHP;
         ScoreManager.OnChangeZemCount += UpdateZemText;
+        ScoreManager.OnDiedPlayer += OpenDiePopup;
     }
     private void OnDisable()
     {
@@ -100,6 +104,12 @@ public class UiManager : MonoBehaviour
         ScoreManager.OnChangeBomb -= UpdateBombText;
         ScoreManager.OnChangeHp -= UpdatePlayerHP;
         ScoreManager.OnChangeZemCount -= UpdateZemText;
+        ScoreManager.OnDiedPlayer -= OpenDiePopup;
+    }
+
+    private void OpenDiePopup()
+    {
+        popupObj.SetActive(true);
     }
 
     private void UpdatePlayerHP(int score)
@@ -128,5 +138,21 @@ public class UiManager : MonoBehaviour
     private void UpdateScoreText(int score)
     {
         ScoreText.text = score.ToString();
+    }
+
+    public void LoadLobbyScene()
+    {
+        GameObject obj = GameObject.Find("ScoreManager");
+        if(obj.TryGetComponent<ScoreManager>(out ScoreManager score))
+        {
+            int newGold = (int)(score.Score * 0.5f);
+            newGold += PlayerPrefs.GetInt(SAVE_Type.SAVE_GOLD.ToString());
+            PlayerPrefs.SetInt(SAVE_Type.SAVE_GOLD.ToString(), newGold);
+        }
+            
+
+
+        PlayerPrefs.SetString(SAVE_Type.SAVE_SceneName.ToString(), SCENE_NAME.LobbySence.ToString());
+        SceneManager.LoadScene(SCENE_NAME.LoadingSence.ToString());
     }
 }

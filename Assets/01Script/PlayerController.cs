@@ -38,6 +38,9 @@ public class PlayerController : MonoBehaviour
     {
         
         movement?.SetEnable(true);
+
+        weapon?.SetOwner(gameObject);
+
         weapon?.SetEnable(true);
     }
 

@@ -9,15 +9,17 @@ using UnityEngine;
 public class PlayerWeapon : MonoBehaviour, IWeaphone
 {
     [SerializeField]    private GameObject projectilePrefab; //나중에 오브젝트 풀링 구현하면서, 수정할 예정
+    [SerializeField]    private GameObject[] projectilePrefabs;
     [SerializeField]    private Transform firePoint;
     [SerializeField]    private GameObject luncherBoombPrefab;
 
     
     private int numOfProjectTiles = 5; //투사체 발사되는 갯수
     private float spreadAngle = 5f;//투사체 발사 각도 간격
-    private float fireRate = 0.3f;//투사체 발사 사이 간격
+    private float fireRate = 0.1f;//투사체 발사 사이 간격
     private float nextFireTime = 0f;
     private bool isFireing = false; //무기가 총알을 발사하고 있는 중인지.
+    private ProjecttileType curProjectType;
 
     private float startAngle;
     private float angle;
@@ -25,10 +27,33 @@ public class PlayerWeapon : MonoBehaviour, IWeaphone
     private Vector2 fireDir;
     private GameObject obj;
 
-    public void InitWeapon(GameObject projectileType, float rate)
+    public void InitWeapon()
     {
-        projectilePrefab = projectileType;
-        fireRate = rate;
+        //projectilePrefab = projectileType;
+        //fireRate = rate;
+
+        projectilePrefab = projectilePrefabs[0];
+        curProjectType = ProjecttileType.Player01;
+        numOfProjectTiles = 1;
+
+        if(PlayerPrefs.GetInt(SkillType.ST_PowerUp.ToString()) > 0)
+        {
+            projectilePrefab = projectilePrefabs[1];
+            curProjectType = ProjecttileType.Player02;
+        }
+        if (PlayerPrefs.GetInt(SkillType.ST_PowerUp2.ToString()) > 0)
+        {
+            projectilePrefab = projectilePrefabs[2];
+            curProjectType = ProjecttileType.Player03;
+        }
+        if (PlayerPrefs.GetInt(SkillType.ST_DoubleShoot.ToString()) > 0)
+        {
+            numOfProjectTiles = 3;
+        }
+        if (PlayerPrefs.GetInt(SkillType.ST_TripleShoot.ToString()) > 0)
+        {
+            numOfProjectTiles = 5;
+        }
     }
 
     public void Fire()
@@ -53,8 +78,11 @@ public class PlayerWeapon : MonoBehaviour, IWeaphone
                 fireDir = fireRotation * Vector2.up;
 
                 //오브젝트 풀링 구현하고.
-                ProjectTileManager.instance.FireProjectile(ProjecttileType.Player01, firePoint.position,
+                ProjectTileManager.instance.FireProjectile(curProjectType, firePoint.position,
                     fireDir, gameObject, 1, 10.0f);
+
+                //ProjectTileManager.instance.FireProjectile(ProjecttileType.Player01, firePoint.position,
+                //    fireDir, gameObject, 1, 10.0f);
 
             }
         }
@@ -77,7 +105,7 @@ public class PlayerWeapon : MonoBehaviour, IWeaphone
 
     public void SetOwner(GameObject newOwner)
     {
-
+        InitWeapon();
     }
 
 }

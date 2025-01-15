@@ -14,7 +14,7 @@ public class ScoreManager : MonoBehaviour
     public static event ScoreChange OnChangePower;
 
     // À¯´ÏÆ¼ Action 
-    public event Action OnDiedPlayer;
+    public static event Action OnDiedPlayer;
 
 
     private int score;
@@ -52,6 +52,10 @@ public class ScoreManager : MonoBehaviour
         OnChangeZemCount?.Invoke(zemCount);
 
         bombCount = 3;
+        //OnChangeBomb?.Invoke(bombCount);
+
+        if (PlayerPrefs.GetInt(SkillType.ST_BoomCountAdd.ToString()) > 0)
+            bombCount = 5;
         OnChangeBomb?.Invoke(bombCount);
     }
 

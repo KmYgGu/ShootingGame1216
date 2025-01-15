@@ -42,7 +42,8 @@ public class Dropitem_Zem : MonoBehaviour, IPickuped
             transform.position = Vector3.Lerp(transform.position, target.transform.position,pickupTimeper/2f);
             //2초 내에 목적지에 도착하겠다는 선형 보간의 코드
 
-            if(pickupTimeper / 2f > 1.0f)//목표위치에 도달
+            //|| Vector3.Distance(target.transform.position, transform.position  1.0f
+            if (pickupTimeper / 2f > 1.0f )//목표위치에 도달
             {
                 OnPickupJam?.Invoke();
                 Destroy(gameObject);

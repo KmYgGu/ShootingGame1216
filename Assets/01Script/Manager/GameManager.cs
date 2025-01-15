@@ -20,12 +20,15 @@ public class GameManager : SingleTon<GameManager>
     private ScoreManager scoreManager;
 
     public ScoreManager GetScoreManager => scoreManager;
-    
 
-    private void Start()
+    private void OnLevelWasLoaded(int level)
     {
-        LoadSenceInit();// 임시로 작성 : 추후 씬변경 로직을 완료후 수정
-        StartCoroutine(GameStart());// 임시...
+        if(level == 1)//씬을 바꾸는 로딩이 발생했을 때, 로딩이 모두가 완료가 됬을때 호출
+        {//배틀 씬 로드가 완료가 되었을 때
+
+            LoadSenceInit();// 임시로 작성 : 추후 씬변경 로직을 완료후 수정
+            StartCoroutine(GameStart());// 임시...
+        }
     }
 
 
@@ -63,5 +66,16 @@ public class GameManager : SingleTon<GameManager>
 
         yield return new WaitForSeconds(3f);
         meteoManager.StartSpawnMeteo();
+
+        ScoreManager.OnDiedPlayer += GameOver;
+    }
+
+    private void GameOver()
+    {
+        pc?.StopGame();
+        enemySpawnManager?.StopSpawnManager();
+        meteoManager?.StopSpawnMeteo();
+
+        ScoreManager.OnDiedPlayer -= GameOver;
     }
 }
